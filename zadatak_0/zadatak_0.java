@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class zadatak_0 {
+public class Zadatak_0 {
     public static void main(String[] args) {
 
         boolean cont = true;
