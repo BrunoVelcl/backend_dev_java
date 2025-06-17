@@ -1,4 +1,4 @@
-public class Zadatak_1 {
+public class Main {
     public static void main(String[] args) {
         for (int i = 0; i <10001; i++){
             if(isArmstrong(i)){
@@ -43,7 +43,7 @@ public class Zadatak_1 {
 //    private int reCnt;
 //
 //    private static boolean isArmstrong(int i) {
-//        Zadatak_1 z1 = new Zadatak_1();
+//        Main z1 = new Main();
 //        z1.reCnt = -1;  //prebrojat ce za 1 na zadnjem pozivu
 //        return z1.recArmstrong(i) == i;
 //    }

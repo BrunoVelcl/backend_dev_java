@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Zadatak_0 {
+public class Main {
     public static void main(String[] args) {
 
         boolean cont = true;
@@ -50,4 +50,3 @@ public class Zadatak_0 {
         }
     }
 }
-
