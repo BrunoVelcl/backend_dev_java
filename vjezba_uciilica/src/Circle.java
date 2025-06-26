@@ -1,20 +1,20 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Circle extends GeometricShape {
+    private final double radius;
 
     public Circle(double radius){
-        super(enumShape.Krug, Math.pow(radius, 2) * Math.PI, radius * Math.PI * 2);
+        this.type = enumShape.Krug;
+        this.radius = radius;
+        calcArea();
+        calcPerimeter();
     }
 
-    public static GeometricShape conCreate(Scanner scanner){
-        double radius;
-        try{
-            radius = scanSide("radijus: ", scanner);
-        } catch (InputMismatchException e) {
-            return null;
-        }
+    @Override
+    protected void calcArea() {
+        this.area =  Math.pow(this.radius, 2) * Math.PI;
+    }
 
-        return new Circle(radius);
+    @Override
+    protected void calcPerimeter() {
+        this.perimeter = this.radius * Math.PI * 2;
     }
 }

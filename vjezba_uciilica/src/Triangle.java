@@ -1,35 +1,28 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-public class Triangle extends GeometricShape {
+public class Triangle extends GeometricShape{
+    private final double sideA;
+    private final double sideB;
+    private final double sideC;
 
     public Triangle(double sideA, double sideB, double sideC){
-        super(enumShape.Trokut, calcArea(sideA, sideB, sideC),sideA + sideB + sideC);
+        this.type = enumShape.Trokut;
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+        calcArea();
+        calcPerimeter();
     }
 
-    private static double calcArea(double sideA, double sideB, double sideC){
+    @Override
+    protected void calcArea(){
         double s = sideA + sideB + sideC;
-        return Math.sqrt(s*(s-sideA)*(s-sideB)*(s-sideC));
+        this.area =  Math.sqrt(s*(s-sideA)*(s-sideB)*(s-sideC));
     }
 
-    public static GeometricShape conCreate(Scanner scanner){
-        double sideA, sideB, sideC;
-        try{
-            sideA = scanSide("stranicu A: ", scanner);
-        } catch (InputMismatchException e) {
-            return null;
-        }
-        try{
-            sideB = scanSide("stranicu B: ", scanner);
-        } catch (InputMismatchException e) {
-            return null;
-        }
-        try{
-            sideC = scanSide("stranicu C: ", scanner);
-        } catch (InputMismatchException e) {
-            return null;
-        }
-        return new Triangle(sideA, sideB, sideC);
+    @Override
+    public void calcPerimeter() {
+        this.perimeter = sideA + sideB + sideC;
     }
+
 
 }
+

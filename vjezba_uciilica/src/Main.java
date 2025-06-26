@@ -22,12 +22,12 @@ public class Main {
         System.out.println("**************************************************");
         for(GeometricShape shape: ucilica.getShapesList()){
             sb.append("\u001b[33m")
-                .append(shape.getShape().toString())
+                .append(shape.getType().toString())
                 .append("\u001b[37m")
                 .append(" Površina: [")
                 .append(String.format("%.2f", shape.getArea()))
                 .append("] Radijus: [")
-                .append(String.format("%.2f", shape.perimeter))
+                .append(String.format("%.2f", shape.getPerimeter()))
                 .append("]\n");
         }
         System.out.println(sb);

@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ucilica {
     private final List<GeometricShape> shapesList = new ArrayList<>();
@@ -17,38 +14,73 @@ public class Ucilica {
             switch (resolveInput(scanner.next())) {
 
                 case Trokut -> {
-                    GeometricShape temp = Triangle.conCreate(scanner);
-                    if (temp != null) {
-                        shapesList.add(temp);
-                    } else {
+                    double a,b,c;
+                    System.out.print("Unesite stranicu A: ");
+                    try{
+                       a = scanner.nextDouble();
+                       scanner.nextLine();
+                    } catch (InputMismatchException e) {
                         badInput();
+                        continue;
                     }
+                    System.out.print("Unesite stranicu B: ");
+                    try{
+                        b = scanner.nextDouble();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
+                        badInput();
+                        continue;
+                    }
+                    System.out.print("Unesite stranicu C: ");
+                    try{
+                        c = scanner.nextDouble();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
+                        badInput();
+                        continue;
+                    }
+                    shapesList.add(new Triangle(a,b,c));
                 }
 
                 case Krug -> {
-                    GeometricShape temp = Circle.conCreate(scanner);
-                    if (temp != null) {
-                        shapesList.add(temp);
-                    } else {
+                    double r;
+                    System.out.print("Unesite radius R: ");
+                    try{
+                        r = scanner.nextDouble();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
                         badInput();
+                        continue;
                     }
+                    shapesList.add(new Circle(r));
                 }
 
                 case Pravokutnik -> {
-                    GeometricShape temp = Rectangle.conCreate(scanner);
-                    if (temp != null) {
-                        shapesList.add(temp);
-                    } else {
+                    double a,b;
+                    System.out.print("Unesite stranicu A: ");
+                    try{
+                        a = scanner.nextDouble();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
                         badInput();
+                        continue;
                     }
+                    System.out.print("Unesite stranicu B: ");
+                    try{
+                        b = scanner.nextDouble();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
+                        badInput();
+                        continue;
+                    }
+                    shapesList.add(new Rectangle(a,b));
                 }
 
-                case null -> badInput();
+                default -> badInput();
             }
             boolean decision = false;
             while (!decision) {
                 System.out.print("Dodati jos jedno? (Y/N): ");
-                scanner.nextLine();
                 String input = scanner.next();
                 if(input.equalsIgnoreCase("Y")){
                     decision = true;
