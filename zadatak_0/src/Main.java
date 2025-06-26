@@ -49,4 +49,12 @@ public class Main {
             }
         }
     }
+
+    public static class GeometricShapes {
+        protected String name;
+        protected int surface;
+        protected int area;
+
+
+    }
 }
