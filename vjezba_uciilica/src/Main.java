@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
+        System.out.println("\u001b[37m");
         Scanner scanner = new Scanner(System.in);
 
         Ucilica ucilica = new Ucilica();
@@ -19,6 +19,8 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         System.out.println("**************************************************");
         for(GeometricShape shape: ucilica.getShapesList()){
+
+//            System.out.println(shape);
             sb.append("\u001b[33m")
                 .append(shape.getType().toString())
                 .append("\u001b[37m")
@@ -29,6 +31,7 @@ public class Main {
                 .append("]\n");
         }
         System.out.println(sb);
+        GeoShapeManager.save(ucilica.getShapesList());
     }
 }
 

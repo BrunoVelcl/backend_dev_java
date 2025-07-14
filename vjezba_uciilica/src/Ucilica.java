@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Ucilica {
@@ -76,7 +80,7 @@ public class Ucilica {
                     shapesList.add(new Rectangle(a,b));
                 }
 
-                default -> badInput();
+                case null, default -> badInput();
             }
             boolean decision = false;
             while (!decision) {
@@ -122,4 +126,5 @@ public class Ucilica {
     public void sortByArea(){
         Collections.sort(shapesList);
     }
+    
 }

@@ -22,4 +22,11 @@ public abstract class GeometricShape implements Comparable<GeometricShape>{
     public int compareTo(GeometricShape o) {
         return Double.compare(this.perimeter, o.perimeter);
     }
+
+    @Override
+    public String toString(){
+        return this.type.toString()
+                + String.format("|%.2f",this.perimeter)
+                + String.format("|%.2f", this.area);
+    }
 }
