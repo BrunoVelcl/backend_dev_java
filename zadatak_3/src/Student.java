@@ -1,12 +1,17 @@
 public class Student extends Osoba{
-    private final int oib;
+    private final String brojIndexa;
 
-    public Student(String ime, String prezime, int oib) {
-        super(ime, prezime);
-        this.oib = oib;
+    public Student(String ime, String prezime,Long oib, String studentId) {
+        super(ime, prezime, Titula.STUDENT, oib);
+        this.brojIndexa = studentId;
     }
 
-    public long getOib() {
-        return oib;
+    public String getBrojIndexa() {
+        return brojIndexa;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "|" + brojIndexa;
     }
 }
