@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Automobil extends Vozilo {
+public class Automobil extends Vozilo implements Serializable {
     private byte brojVrata;
 
     @Override

@@ -19,10 +19,8 @@ public class Main {
                 STR_COLOR_DEFAULT, STR_COLOR_RED, STR_COLOR_DEFAULT
         );
 
-
         Osoblje osoblje = new Osoblje();
         osoblje.ucitajIzDatoteke();
-
 
         while (true) {
             Scanner scanner = new Scanner(System.in);

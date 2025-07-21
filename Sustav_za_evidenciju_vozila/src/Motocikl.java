@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Motocikl extends Vozilo {
+public class Motocikl extends Vozilo implements Serializable {
     private String tipMotora;
 
     @Override

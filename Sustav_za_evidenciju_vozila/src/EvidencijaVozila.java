@@ -10,19 +10,31 @@ public class EvidencijaVozila {
         vozila.add(vozilo);
     }
 
-    public void spremiPodatkeUDatoteku(String datoteka){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(datoteka)))){
+    public void spremiPodatkeUDatoteku(File datoteka){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream((datoteka))))){
             oos.writeObject(vozila);
         }catch (IOException e){
             System.err.println("Došlo je do greške prilikom otvaranaja datoteke: " + e.getMessage());
         }
     }
 
-    public void ucitajPodatkeIzDatoteke(String datoteka){
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(datoteka)))){
+    public void ucitajPodatkeIzDatoteke(File datoteka){
+        if(!datoteka.exists()){
+            try {
+                if(!datoteka.createNewFile()){
+                    throw new IOException();
+                };
+            }catch (IOException e){
+                System.err.println("Nemoguce stvoriti datoteku za pohranu: " + e.getMessage());
+            }
+            return;
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(datoteka)))){
             vozila = (List<Vozilo>)ois.readObject();
-        }catch (IOException | ClassNotFoundException e){
-            System.err.println("Došlo je do greške prilikom otvaranaja datoteke: " + e.getMessage() + e.fillInStackTrace());
+        }catch (IOException e){
+            System.out.println("Došlo je do greške prilikom otvaranaja datoteke, nepostoji zapis vozila: " + e.getMessage() + e.fillInStackTrace());
+        }catch (ClassNotFoundException e){
+            System.out.println("Zapis nepostoji, stvoren novi zapis.");
         }
     }
 
