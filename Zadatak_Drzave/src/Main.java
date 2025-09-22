@@ -94,6 +94,10 @@ public class Main {
 
 
     private static void addNew(String country, DataSource ds) {
+        if(country.isBlank()){
+            System.out.println(ANSI.Color.basicString("Nepravilan unos!", ANSI.BasicColor.RED));
+            return;
+        }
         String query = String.format("""
                 INSERT INTO dbo.Drzava(Naziv) 
                 VALUES('%s')
