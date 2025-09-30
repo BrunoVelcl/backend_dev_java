@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">
+            jdbc:sqlserver://localhost\SQLEXPRESS;databaseName=AdventureWorksOBP;encrypt=true;trustServerCertificate=true;
+        </property>
+        <property name="hibernate.connection.username">java</property>
+        <property name="hibernate.connection.password">sql</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.autocommit">true</property>
+
+
+        <!-- Mapping classes -->
+        <mapping class="com.food.domain.entity.Meal"/>
+        <mapping class="com.food.domain.entity.Ingredient"/>
+
+    </session-factory>
+</hibernate-configuration>

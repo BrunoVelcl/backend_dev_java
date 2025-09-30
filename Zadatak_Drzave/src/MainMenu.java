@@ -3,7 +3,7 @@ public enum MainMenu {
     UPDATE_EXISTING('2'),
     DELETE('3'),
     PRINT_ALL('4'),
-    QUIT('5');
+    QUIT('Q');
 
     private final char Character;
 

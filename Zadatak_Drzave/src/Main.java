@@ -94,19 +94,20 @@ public class Main {
 
 
     private static void addNew(String country, DataSource ds) {
-        if(country.isBlank()){
+        if (country.isBlank()) {
             System.out.println(ANSI.Color.basicString("Nepravilan unos!", ANSI.BasicColor.RED));
             return;
         }
-        String query = String.format("""
-                INSERT INTO dbo.Drzava(Naziv) 
-                VALUES('%s')
-                """, country);
+        String query = """
+                INSERT INTO dbo.Drzava(Naziv)
+                VALUES(?)
+                """;
         try (
                 Connection con = ds.getConnection();
-                Statement statement = con.createStatement();
+                PreparedStatement ps = con.prepareStatement(query);
         ) {
-            if (statement.executeUpdate(query) == 1) {
+            ps.setString(1, country);
+            if (ps.executeUpdate() == 1) {
                 System.out.println(ANSI.Color.basicString("Uspješno dodano!", ANSI.BasicColor.GREEN));
             } else {
                 System.out.println(ANSI.Color.basicString("Dražavu je nemoguće dodati!", ANSI.BasicColor.RED));
@@ -118,44 +119,49 @@ public class Main {
 
 
     private static MessageState getCountryById(int id, DataSource ds) {
-        String query = String.format("""
+        String query = """
                 SELECT d.Naziv
                 FROM dbo.Drzava d
-                WHERE d.IDDrzava = %d;
-                """, id);
+                WHERE d.IDDrzava = ?;
+                """;
 
         try (
                 Connection con = ds.getConnection();
-                Statement statement = con.createStatement();
-                ResultSet rs = statement.executeQuery(query);
-        ) {
-            if (rs.next()) {
-                return new MessageState(
-                        ANSI.Color.basicString("Odabrana Drzava: ", ANSI.BasicColor.BLUE) +
-                                rs.getString("Naziv"),
-                        true);
-            }
-            return new MessageState(
-                    ANSI.Color.basicString("Nepostoji unos za ID: ", ANSI.BasicColor.RED) + id,
-                    false);
+                PreparedStatement ps = con.prepareStatement(query);
 
+        ) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new MessageState(
+                            ANSI.Color.basicString("Odabrana Drzava: ", ANSI.BasicColor.BLUE) +
+                                    rs.getString("Naziv"),
+                            true);
+                }
+                return new MessageState(
+                        ANSI.Color.basicString("Nepostoji unos za ID: ", ANSI.BasicColor.RED) + id,
+                        false);
+            }
         } catch (SQLException e) {
             return new MessageState(e.getMessage(), false);
         }
+
     }
 
     private static void renameCountry(String naziv, int id, DataSource ds) {
-        String query = String.format("""
+        String query = """
                 UPDATE dbo.Drzava
-                SET Naziv = '%s'
-                WHERE IDDrzava = %d
-                """, naziv, id);
+                SET Naziv = ?
+                WHERE IDDrzava = ?
+                """;
 
         try (
                 Connection con = ds.getConnection();
-                Statement statement = con.createStatement();
+                PreparedStatement ps = con.prepareStatement(query);
         ) {
-            if (statement.executeUpdate(query) == 1) {
+            ps.setString(1, naziv);
+            ps.setInt(2, id);
+            if (ps.executeUpdate() == 1) {
                 System.out.println(ANSI.Color.basicString("Uspješno izmjenjeno!", ANSI.BasicColor.GREEN));
             } else {
                 System.out.println(ANSI.Color.basicString("Dražavu je nemoguće izmjeniti!", ANSI.BasicColor.RED));
@@ -166,17 +172,18 @@ public class Main {
     }
 
     private static void deleteCountryById(int id, DataSource ds) {
-        String query = String.format("""
+        String query = """
                 DELETE
                 FROM dbo.Drzava
                 WHERE IDDrzava = %d
-                """, id);
+                """;
 
         try (
                 Connection con = ds.getConnection();
-                Statement statement = con.createStatement();
+                PreparedStatement ps = con.prepareStatement(query);
         ) {
-            if (statement.executeUpdate(query) == 1) {
+            ps.setInt(1, id);
+            if (ps.executeUpdate() == 1) {
                 System.out.println(ANSI.Color.basicString("Uspješno izbrisano!", ANSI.BasicColor.GREEN));
             } else {
                 System.out.println(ANSI.Color.basicString("Dražavu je nemoguće izbrisati!", ANSI.BasicColor.RED));
