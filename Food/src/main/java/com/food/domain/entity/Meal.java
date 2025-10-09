@@ -15,16 +15,16 @@ public class Meal {
 
     String naziv;
 
-    @OneToMany(mappedBy = "meal",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     List<Ingredient> ingredients = new ArrayList<>();
 
-    public Meal(){};
+    public Meal() {};
 
     public Meal(String naziv) {
         this.naziv = naziv;
     }
 
-    public void addIngredient(String ingredient){
+    public void addIngredient(String ingredient) {
         this.ingredients.add(new Ingredient(ingredient, this));
     }
 

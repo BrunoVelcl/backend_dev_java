@@ -5,6 +5,7 @@ import com.food.domain.repository.MealRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -17,12 +18,17 @@ public class MealRepositoryImp implements MealRepository {
 
     @Override
     public boolean saveMeal(Meal meal) {
+        Transaction tx = null;
         try(Session session = sf.openSession()){
-            session.save(meal);
+            tx = session.beginTransaction();
+            session.persist(meal);
+            tx.commit();
             return true;
         }catch (HibernateException e){
             e.printStackTrace();
+            tx.rollback();
         }
+
         return false;
     }
 

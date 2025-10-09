@@ -18,8 +18,8 @@
 
 
         <!-- Mapping classes -->
-        <mapping class="com.food.domain.entity.Meal"/>
-        <mapping class="com.food.domain.entity.Ingredient"/>
+        <mapping class="com.product.domain.entity.Product"/>
+
 
     </session-factory>
 </hibernate-configuration>
