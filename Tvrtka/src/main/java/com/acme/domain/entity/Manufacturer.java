@@ -11,26 +11,31 @@ public class Manufacturer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDManufacturer")
-    long idManufacturer;
+    private long idManufacturer;
 
     @Column(nullable = false, unique = true)
-    String name;
+    private String name;
 
     @Column(nullable = false, unique = true, columnDefinition = "NVARCHAR(16)")
-    String shorthandName;
+    private String shorthandName;
 
     @Column(nullable = false, unique = true)
-    String identifier;
+    private String identifier;
+
+    @JoinColumn(name = "CountryID")
+    @ManyToOne
+    private Country country;
 
     @OneToMany(mappedBy = "manufacturer")
-    Set<Machine> machines;
+    private Set<Machine> machines;
 
     public Manufacturer(){}
 
-    public Manufacturer(String name, String shorthandName, String identifier) {
+    public Manufacturer(String name, String shorthandName, String identifier, Country country) {
         this.name = name;
         this.shorthandName = shorthandName;
         this.identifier = identifier;
+        this.country = country;
     }
 
     public long getIdManufacturer() {

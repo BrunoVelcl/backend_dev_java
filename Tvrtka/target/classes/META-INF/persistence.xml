@@ -10,6 +10,8 @@
 
         <class>com.acme.domain.entity.Manufacturer</class>
         <class>com.acme.domain.entity.Machine</class>
+        <class>com.acme.domain.entity.Worker</class>
+        <class>com.acme.domain.entity.Country</class>
 
         <properties>
             <!-- Change to your DB -->

@@ -28,17 +28,18 @@ public class Worker {
 
     @JoinColumn(name = "CountryOfBirthId")
     @ManyToOne
-    private String countryOfBirth = null;
+    private Country countryOfBirth = null;
 
-    @Column(name = "CityOfBirth")
-    private String cityOfBirth = null;
+    @JoinColumn(name = "CityOfBirthID")
+    @ManyToOne
+    private City cityOfBirth = null;
 
     @Column(name = "Gender", nullable = false)
     private Gender gender;
 
     public Worker(){}
 
-    public Worker(long idWorker, String firstName, String lastName, String middleName, String idNumber, Date dob, String countryOfBirth, String cityOfBirth, Gender gender) {
+    public Worker(long idWorker, String firstName, String lastName, String middleName, String idNumber, Date dob, Country countryOfBirth, City cityOfBirth, Gender gender) {
         this.idWorker = idWorker;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,11 +64,11 @@ public class Worker {
         this.middleName = middleName;
     }
 
-    public void setCountryOfBirth(String countryOfBirth) {
+    public void setCountryOfBirth(Country countryOfBirth) {
         this.countryOfBirth = countryOfBirth;
     }
 
-    public void setCityOfBirth(String cityOfBirth) {
+    public void setCityOfBirth(City cityOfBirth) {
         this.cityOfBirth = cityOfBirth;
     }
 
@@ -95,11 +96,11 @@ public class Worker {
         return dob;
     }
 
-    public String getCountryOfBirth() {
+    public Country getCountryOfBirth() {
         return countryOfBirth;
     }
 
-    public String getCityOfBirth() {
+    public City getCityOfBirth() {
         return cityOfBirth;
     }
 

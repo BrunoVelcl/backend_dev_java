@@ -1,7 +1,6 @@
 package com.food.domain.entity;
 
 import jakarta.persistence.*;
-import net.bytebuddy.utility.nullability.NeverNull;
 
 import java.util.ArrayList;
 import java.util.List;

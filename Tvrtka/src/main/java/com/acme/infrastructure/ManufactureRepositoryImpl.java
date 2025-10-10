@@ -22,7 +22,7 @@ public class ManufactureRepositoryImpl implements ManufacturerRepository {
     public Manufacturer registerNew(Manufacturer manufacturer) {
         Manufacturer rv = null;
         EntityTransaction tx = null;
-        try(EntityManager em = emf.createEntityManager()){
+        try(EntityManager em = this.emf.createEntityManager()){
             tx = em.getTransaction();
             tx.begin();
             rv = em.merge(manufacturer);

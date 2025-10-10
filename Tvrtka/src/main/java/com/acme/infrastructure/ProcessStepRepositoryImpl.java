@@ -1,29 +1,29 @@
 package com.acme.infrastructure;
 
-import com.acme.domain.entity.Country;
-import com.acme.domain.repository.CountryRepository;
+import com.acme.domain.entity.ProcessStep;
+import com.acme.domain.repository.ProcessStepRepository;
 import com.acme.util.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
-public class CountryRepositoryImpl implements CountryRepository {
+public class ProcessStepRepositoryImpl implements ProcessStepRepository {
     EntityManagerFactory emf;
 
-    public CountryRepositoryImpl() {
+    public ProcessStepRepositoryImpl() {
         this.emf = JPAUtil.getEntityManagerFactory();
     }
 
     @Override
-    public Country registerNew(Country country) {
-        Country rv = null;
+    public ProcessStep registerNew(ProcessStep processStep) {
+        ProcessStep rv = null;
         EntityTransaction tx = null;
         try(EntityManager em = this.emf.createEntityManager()){
             tx = em.getTransaction();
             tx.begin();
-            rv = em.merge(country);
+            rv = em.merge(processStep);
             tx.commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             if(tx != null && tx.isActive()){
                 tx.rollback();
             }

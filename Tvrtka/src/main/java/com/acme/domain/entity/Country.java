@@ -19,6 +19,12 @@ public class Country {
     @OneToMany(mappedBy = "countryOfBirth")
     Set<Worker> workersBirthCountry;
 
+    @OneToMany(mappedBy = "country")
+    Set<City> cities;
+
+    @OneToMany(mappedBy = "country")
+    Set<Manufacturer> manufacturers;
+
     public Country(){}
 
     public Country(String name, String code) {
