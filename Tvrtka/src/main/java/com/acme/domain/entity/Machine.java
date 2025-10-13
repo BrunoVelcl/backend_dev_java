@@ -4,11 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-public class Machine {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDMachine")
-    private long idMachine;
+public class Machine extends SuperEntity{
 
     @Column(columnDefinition = "NVARCHAR(20)", nullable = false, unique = true)
     private String designation;
@@ -28,10 +24,6 @@ public class Machine {
         this.manufacturer = manufacturer;
         this.inventoryNumber = inventoryNumber;
         this.yearManufactured = yearManufactured;
-    }
-
-    public long getIdMachine() {
-        return idMachine;
     }
 
     public String getDesignation() {

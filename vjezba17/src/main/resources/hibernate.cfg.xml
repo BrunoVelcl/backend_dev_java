@@ -18,7 +18,7 @@
 
 
         <!-- Mapping classes -->
-        <mapping class="com.vjezba17.domain.entity.Product"/>
+        <mapping class="com.TransactionIsolationTest.domain.entity.Product"/>
 
 
     </session-factory>

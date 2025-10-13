@@ -5,10 +5,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Country {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Country extends SuperEntity{
 
     @Column(name = "Name", nullable = false, unique = true)
     private String name;

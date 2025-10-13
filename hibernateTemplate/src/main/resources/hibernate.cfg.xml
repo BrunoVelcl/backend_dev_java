@@ -18,7 +18,7 @@
 
 
         <!-- Mapping classes -->
-        <mapping class="com.TransactionIsolationTest.domain.entity.Product"/>
+        <mapping class="com.hibernateTemplate.domain.entity.Product"/>
 
 
     </session-factory>

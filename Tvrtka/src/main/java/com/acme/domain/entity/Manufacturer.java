@@ -1,17 +1,12 @@
 package com.acme.domain.entity;
 
-import com.acme.domain.repository.ManufacturerRepository;
 import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Manufacturer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDManufacturer")
-    private long idManufacturer;
+public class Manufacturer extends SuperEntity{
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -36,10 +31,6 @@ public class Manufacturer {
         this.shorthandName = shorthandName;
         this.identifier = identifier;
         this.country = country;
-    }
-
-    public long getIdManufacturer() {
-        return idManufacturer;
     }
 
     public String getName() {

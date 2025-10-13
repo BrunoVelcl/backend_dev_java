@@ -3,10 +3,7 @@ package com.acme.domain.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class City {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class City extends SuperEntity{
 
     @Column(name = "Name", nullable = false)
     private String name;
@@ -20,10 +17,6 @@ public class City {
     public City(String name, Country country) {
         this.name = name;
         this.country = country;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {
