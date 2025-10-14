@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.plchldrcmpny.bruno</groupId>
-    <artifactId>JPAExample</artifactId>
+    <artifactId>hibernateTemplate</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,26 +14,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>6.4.4.Final</hibernate.version>
         <mssqldriver.version>13.2.0.jre11</mssqldriver.version>
-
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>${mssqldriver.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.2.0</version>
+            <version>13.2.1.jre11</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+
 </project>

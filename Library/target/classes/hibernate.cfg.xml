@@ -18,7 +18,9 @@
 
 
         <!-- Mapping classes -->
-        <mapping class="com.hibernateTemplate.domain.entity.B"/>
+        <mapping class="com.BookLib.domain.entity.Author"/>
+        <mapping class="com.BookLib.domain.entity.Book"/>
+        <mapping class="com.BookLib.domain.entity.Publisher"/>
 
 
     </session-factory>
