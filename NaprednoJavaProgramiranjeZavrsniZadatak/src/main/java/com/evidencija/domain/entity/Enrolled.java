@@ -1,9 +1,9 @@
 package com.evidencija.domain.entity;
 
 public class Enrolled {
-    private Integer id;
-    private Student student;
-    private Program program;
+    private final Integer id;
+    private final Student student;
+    private final Program program;
 
     public Enrolled(Integer id, Student student, Program program) {
         this.id = id;
@@ -11,15 +11,12 @@ public class Enrolled {
         this.program = program;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public Student getStudentId() {
-        return student;
-    }
-
-    public Program getProgramId() {
-        return program;
+    public String prettyString(){
+        return
+                this.id + ". " +
+                this.student.getFirstName() + " " +
+                this.student.getLastName() + " " +
+                this.program.getName() + " " +
+                this.program.getCsvet();
     }
 }
