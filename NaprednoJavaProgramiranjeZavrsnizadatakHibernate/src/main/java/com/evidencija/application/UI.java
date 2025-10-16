@@ -349,6 +349,6 @@ public class UI {
             }
 
         }
-        System.out.println(program.printEnrolled());;
+        System.out.println(program.printEnrolled());
     }
 }

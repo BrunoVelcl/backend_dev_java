@@ -1,6 +1,5 @@
 package com.evidencija.infrastructure;
 
-import com.evidencija.domain.entity.Student;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,8 +27,10 @@ public class GenericRepositoryImpl implements GenericRepository {
             rv = session.merge(entity);
             tx.commit();
         }catch (HibernateException e){
-            tx.rollback();
-            e.printStackTrace();
+            if(tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            System.out.println(e.getMessage());
         }
         return rv;
     }
@@ -43,8 +44,10 @@ public class GenericRepositoryImpl implements GenericRepository {
             rv = session.find(tClass, id);
             tx.commit();
         }catch (HibernateException e){
-            tx.rollback();
-            e.printStackTrace();
+            if(tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            System.out.println(e.getMessage());
         }
         return rv;
     }
@@ -69,8 +72,10 @@ public class GenericRepositoryImpl implements GenericRepository {
             rv = session.createQuery(query).setParameter("searchTerm",  parameter).getResultList();
             tx.commit();
         }catch (HibernateException e){
-            tx.rollback();
-            e.printStackTrace();
+            if(tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            System.out.println(e.getMessage());
         }
         return rv;
     }

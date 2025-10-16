@@ -1,14 +1,10 @@
 package com.evidencija.application;
 
-import com.evidencija.domain.entity.Program;
-import com.evidencija.domain.entity.Student;
-import com.evidencija.domain.repository.GenericRepository;
-import com.evidencija.infrastructure.GenericRepositoryImpl;
 import com.evidencija.util.Util;
 
 public class EvidencijaPolaznikaService {
     public void run(){
-        Util.getSessionFactory(); //Ensures Util loads before the CLI, without this the cli will load before Hibernate info dump
+        var _ = Util.getSessionFactory(); //Ensures Util loads before the CLI, without this the cli will load before Hibernate info dump
 
         while(true){
             String mainSelection = UI.getMainMenuSelection();

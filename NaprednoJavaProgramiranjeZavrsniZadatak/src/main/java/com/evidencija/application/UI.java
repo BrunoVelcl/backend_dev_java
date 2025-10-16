@@ -236,7 +236,7 @@ public class UI {
                 }
                 case CSVET -> {
                     List<Program> programs = prompProgramCSVET();
-                    if (programs.isEmpty()) return null;
+                    if (programs == null || programs.isEmpty()) return null;
                     printPrograms(programs);
                     return promptProgramID();
                 }
