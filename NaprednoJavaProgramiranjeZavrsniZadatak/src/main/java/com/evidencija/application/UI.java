@@ -47,14 +47,14 @@ public class UI {
                     + student.getId());
         }
         if (programIn != null) {
-            System.out.println(Text.ODABRAN_PROGRAM_ZA_UPIS
+            System.out.println(Text.ODABRAN_PROGRAM_ZA_ISPIS
                     + programOut.getName() + " "
                     + programOut.getCsvet() + " "
                     + programOut.getId());
         }
 
         if (programIn != null) {
-            System.out.println(Text.ODABRAN_PROGRAM_ZA_ISPIS
+            System.out.println(Text.ODABRAN_PROGRAM_ZA_UPIS
                     + programIn.getName() + " "
                     + programIn.getCsvet() + " "
                     + programIn.getId());
@@ -307,7 +307,7 @@ public class UI {
                 continue;
             }
             if (programOut == null) {
-                System.out.println(Text.ADD_STUDENT_HIGHLIGHT);
+                System.out.println(Text.REMOVE_STUDENT_HIGHLIGHT);
                 programOut = selectProgram();
                 if (programOut == null) {
                     System.out.println(Text.NOT_FOUND_TRY_AGAIN);
@@ -318,7 +318,7 @@ public class UI {
                 continue;
             }
             if (programIn == null) {
-                System.out.println(Text.REMOVE_STUDENT_HIGHLIGHT);
+                System.out.println(Text.ADD_STUDENT_HIGHLIGHT);
                 programIn = selectProgram();
                 if (programIn == null) {
                     System.out.println(Text.NOT_FOUND_TRY_AGAIN);

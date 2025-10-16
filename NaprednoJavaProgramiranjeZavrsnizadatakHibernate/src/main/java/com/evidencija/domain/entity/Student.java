@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity(name = "Polaznik")
 public class Student extends SuperEntity{
 
@@ -45,7 +46,7 @@ public class Student extends SuperEntity{
         return Text.STAR_SEPARATOR + Text.NEW_LINE +
                 "ID: " + ANSI.Color.basicString(String.valueOf(super.getId()), ANSI.BasicColor.BLUE) + Text.NEW_LINE +
                 "Ime: " + ANSI.Color.basicString(this.firstName, ANSI.BasicColor.BLUE) + Text.NEW_LINE +
-                "Prezime " + ANSI.Color.basicString(this.lastName, ANSI.BasicColor.BLUE) + Text.NEW_LINE +
+                "Prezime: " + ANSI.Color.basicString(this.lastName, ANSI.BasicColor.BLUE) + Text.NEW_LINE +
                 Text.STAR_SEPARATOR;
     }
 }

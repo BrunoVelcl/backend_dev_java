@@ -13,7 +13,7 @@ public abstract class Text {
             2. Unesite novi program.
             3. Upiši polaznika.
             4. Transfer programa polaznika.
-            5. Ispis polaznika programa.
+            5. Prikaz polaznika programa.
             Q. Izlaz.
             """;
 
@@ -34,6 +34,7 @@ public abstract class Text {
             """;
 
 
+    public static final String SPACE = " ";
     public static final String NEW_LINE = System.lineSeparator();
     public static final String STAR_SEPARATOR = ANSI.Color.basicString("*********************************", ANSI.BasicColor.GREEN);
 

@@ -2,13 +2,14 @@ package com.evidencija.domain.entity;
 
 import com.evidencija.application.Text;
 import com.evidencija.util.ANSI;
+import com.evidencija.util.Util;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "ProgramObrazovanja")
-public class Program extends SuperEntity{
+public class Program extends SuperEntity {
 
     @Column(name = "Naziv", nullable = false, length = 100)
     private String name;
@@ -24,7 +25,9 @@ public class Program extends SuperEntity{
     )
     private Set<Student> students;
 
-    public Program(){}
+    public Program() {
+    }
+
     public Program(String name, Integer csvet) {
         this.name = name;
         this.csvet = csvet;
@@ -43,11 +46,11 @@ public class Program extends SuperEntity{
         return students;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) {
         this.students.add(student);
     }
 
-    public void removeStudent(Student student){
+    public void removeStudent(Student student) {
         this.students.remove(student);
     }
 
@@ -58,4 +61,24 @@ public class Program extends SuperEntity{
                 "CSVET: " + ANSI.Color.basicString(this.csvet.toString(), ANSI.BasicColor.MAGENTA) + Text.NEW_LINE +
                 Text.STAR_SEPARATOR;
     }
+
+    public String printEnrolled() {
+        StringBuilder sb = Util.sb;
+        sb.setLength(0);
+        sb.append(Text.STAR_SEPARATOR).append(Text.NEW_LINE);
+        for (Student s : this.students) {
+            Util.sb
+                    .append(ANSI.Color.basicString(s.getFirstName(), ANSI.BasicColor.BLUE))
+                    .append(Text.SPACE)
+                    .append(ANSI.Color.basicString(s.getLastName(), ANSI.BasicColor.BLUE))
+                    .append(Text.SPACE)
+                    .append(ANSI.Color.basicString(this.getName(), ANSI.BasicColor.YELLOW))
+                    .append(Text.SPACE)
+                    .append(this.getCsvet())
+                    .append(Text.NEW_LINE);
+        }
+        sb.append(Text.STAR_SEPARATOR).append(Text.NEW_LINE);
+        return sb.toString();
+    }
+
 }
