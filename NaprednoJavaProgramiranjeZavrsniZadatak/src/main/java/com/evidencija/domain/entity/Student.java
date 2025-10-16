@@ -1,6 +1,7 @@
 package com.evidencija.domain.entity;
 
-import com.evidencija.util.Util;
+import com.evidencija.application.Text;
+import com.evidencija.util.ANSI;
 
 public class Student {
     private Integer id = null;
@@ -31,10 +32,10 @@ public class Student {
     }
 
     public String prettyString(){
-        return Util.STAR_SEPARATOR + Util.NEW_LINE +
-                "ID: " + this.id + Util.NEW_LINE +
-                "Ime: " + this.firstName + Util.NEW_LINE +
-                "Prezime " + this.lastName + Util.NEW_LINE +
-                Util.STAR_SEPARATOR;
+        return Text.STAR_SEPARATOR + Text.NEW_LINE +
+                "ID: " + ANSI.Color.basicString(this.id.toString(), ANSI.BasicColor.BLUE) + Text.NEW_LINE +
+                "Ime: " + ANSI.Color.basicString(this.firstName, ANSI.BasicColor.BLUE) + Text.NEW_LINE +
+                "Prezime " + ANSI.Color.basicString(this.lastName, ANSI.BasicColor.BLUE) + Text.NEW_LINE +
+                Text.STAR_SEPARATOR;
     }
 }

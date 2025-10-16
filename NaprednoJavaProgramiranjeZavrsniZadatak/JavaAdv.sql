@@ -35,8 +35,9 @@ AS
 	
 GO
 
+
 CREATE PROC dbo.dodajNoviProgramObrazovanja
-	@name NVARCHAR,
+	@name NVARCHAR(100),
 	@points INT
 AS
 	INSERT INTO dbo.ProgramObrazovanja(Naziv, CSVET)
@@ -88,9 +89,10 @@ CREATE PROC dbo.ispisiPolaznikeZaProgram
 	@program INT
 AS
 	SELECT Ime, Prezime, Naziv, CSVET 
-	FROM dbo.ProgramObrazovanja
-		JOIN dbo.Polaznik ON Polaznik.PolaznikId = ProgramObrazovanja.ProgramObrazovanjaId
-	WHERE ProgramObrazovanjaId = @program
+	FROM dbo.Upis
+		JOIN dbo.Polaznik ON Polaznik.PolaznikId = Upis.IDPolaznik
+		JOIN dbo.ProgramObrazovanja ON ProgramObrazovanja.ProgramObrazovanjaId = Upis.IDProgramObrazovanja
+	WHERE IDProgramObrazovanja = @program
 
 GO
-
+	

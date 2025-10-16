@@ -1,5 +1,7 @@
 package com.evidencija.domain.entity;
 
+import com.evidencija.util.ANSI;
+
 public class Enrolled {
     private final Integer id;
     private final Student student;
@@ -14,8 +16,10 @@ public class Enrolled {
     public String prettyString(){
         return
                 this.id + ". " +
-                this.student.getFirstName() + " " +
-                this.student.getLastName() + " " +
+                ANSI.Color.basicString(
+                        this.student.getFirstName() + " " +
+                                this.student.getLastName() + " "
+                        , ANSI.BasicColor.BLUE) +
                 this.program.getName() + " " +
                 this.program.getCsvet();
     }

@@ -9,16 +9,12 @@ public class Util {
     public static final StringBuilder sb;
     public static final Scanner scanner;
     public static final DataSource ds;
-    public static final String NEW_LINE;
-    public static final String STAR_SEPARATOR;
 
     static {
         try{
             sb = new StringBuilder();
             scanner = new Scanner(System.in);
             ds = createDataSource();
-            NEW_LINE = System.lineSeparator();
-            STAR_SEPARATOR = "*********************************";
         } catch (Exception e) {
             System.err.println("Greška kod inicijalizacije programa.");
             throw new RuntimeException(e);

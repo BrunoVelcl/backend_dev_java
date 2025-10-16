@@ -10,43 +10,29 @@ import java.util.List;
 public class UI {
 
     public static String getMainMenuSelection() {
-        System.out.println("Odaberite opciju: ");
-        System.out.println("1. Unesite novog polaznika.");
-        System.out.println("2. Unesite novi program.");
-        System.out.println("3. Upiši polaznika.");
-        System.out.println("4. Transfer programa polaznika.");
-        System.out.println("5. Ispis polaznika programa.");
-        System.out.println("Q. Izlaz.");
+        System.out.println(Text.MAIN_MENU);
         return Util.scanner.nextLine().trim().toLowerCase();
     }
 
     private static String getRegisterStudentSelection() {
-        System.out.println("Odaberite nacin pretrage Studenta: ");
-        System.out.println("1. ID.");
-        System.out.println("2. Ime.");
-        System.out.println("3. Prezime.");
-        System.out.println("Q. Izlaz.");
+        System.out.println(Text.NEW_STUDENT_MENU);
         return Util.scanner.nextLine().trim().toLowerCase();
     }
 
     private static String getRegisterProgramSelection() {
-        System.out.println("Odaberite nacin pretrage Programa: ");
-        System.out.println("1. ID.");
-        System.out.println("2. Naziv.");
-        System.out.println("3. CSVET.");
-        System.out.println("Q. Izlaz.");
+        System.out.println(Text.NEW_PROGRAM_MENU);
         return Util.scanner.nextLine().trim().toLowerCase();
     }
 
     private static void currentlySelected(Student student, Program program) {
         if (student != null) {
-            System.out.println("Odabran polaznik: "
+            System.out.println(Text.ODABRAN_POLAZNIK
                     + student.getFirstName() + " "
                     + student.getLastName() + " "
                     + student.getId());
         }
         if (program != null) {
-            System.out.println("Odabran program: "
+            System.out.println(Text.ODABRAN_PROGRAM
                     + program.getName() + " "
                     + program.getCsvet() + " "
                     + program.getId());
@@ -55,20 +41,20 @@ public class UI {
 
     private static void currentlySelected(Student student, Program programOut, Program programIn) {
         if (student != null) {
-            System.out.println("Odabran polaznik: "
+            System.out.println(Text.ODABRAN_POLAZNIK
                     + student.getFirstName() + " "
                     + student.getLastName() + " "
                     + student.getId());
         }
         if (programIn != null) {
-            System.out.println("Odabran program za ispis: "
+            System.out.println(Text.ODABRAN_PROGRAM_ZA_UPIS
                     + programOut.getName() + " "
                     + programOut.getCsvet() + " "
                     + programOut.getId());
         }
 
         if (programIn != null) {
-            System.out.println("Odabran program za upis: "
+            System.out.println(Text.ODABRAN_PROGRAM_ZA_ISPIS
                     + programIn.getName() + " "
                     + programIn.getCsvet() + " "
                     + programIn.getId());
@@ -78,110 +64,110 @@ public class UI {
 
     private static void printStudents(List<Student> students) {
         if (students.isEmpty()) {
-            System.out.println("Nista nije pronadjeno.");
+            System.out.println(Text.NOTHING_WAS_FOUND);
             return;
         }
         Util.sb.setLength(0);
         for (Student s : students) {
-            Util.sb.append(s.prettyString()).append(Util.NEW_LINE);
+            Util.sb.append(s.prettyString()).append(Text.NEW_LINE);
         }
         System.out.println(Util.sb);
     }
 
     private static void printPrograms(List<Program> programs) {
         if (programs.isEmpty()) {
-            System.out.println("Nista nije pronadjeno.");
+            System.out.println(Text.NOTHING_WAS_FOUND);
             return;
         }
         Util.sb.setLength(0);
         for (Program p : programs) {
-            Util.sb.append(p.prettyString()).append(Util.NEW_LINE);
+            Util.sb.append(p.prettyString()).append(Text.NEW_LINE);
         }
         System.out.println(Util.sb);
     }
 
     private static void printEnrolled(List<Enrolled> enrolled) {
         if (enrolled.isEmpty()) {
-            System.out.println("Nista nije pronadjeno.");
+            System.out.println(Text.NOTHING_WAS_FOUND);
             return;
         }
         Util.sb.setLength(0);
-        Util.sb.append(Util.STAR_SEPARATOR).append(Util.NEW_LINE);
+        Util.sb.append(Text.STAR_SEPARATOR).append(Text.NEW_LINE);
         for (Enrolled e : enrolled) {
-            Util.sb.append(e.prettyString()).append(Util.NEW_LINE);
+            Util.sb.append(e.prettyString()).append(Text.NEW_LINE);
         }
-        Util.sb.append(Util.STAR_SEPARATOR);
+        Util.sb.append(Text.STAR_SEPARATOR);
         System.out.println(Util.sb);
     }
 
 
     public static void promptStudent() {
-        System.out.print("Ime: ");
+        System.out.print(Text.ENTER_FIRST_NAME);
         String firstName = Util.scanner.nextLine().trim();
-        System.out.print("Prezime: ");
+        System.out.print(Text.ENTER_LAST_NAME);
         String lastName = Util.scanner.nextLine().trim();
         if (DBQuery.addStudent(new Student(firstName, lastName))) {
-            System.out.println("Uspjesno Dodano!");
+            System.out.println(Text.ADDED_SUCCESSFULLY);
         } else {
-            System.out.println("Greska: nije moguce dodati studenta!");
+            System.out.println(Text.ADD_FAIL);
         }
     }
 
     public static void promptProgram() {
-        System.out.print("Naziv programa: ");
+        System.out.print(Text.ENTER_TITLE);
         String name = Util.scanner.nextLine().trim();
-        System.out.print("CSVET: ");
+        System.out.print(Text.ENTER_POINTS);
         int csvet;
         try {
             csvet = Integer.parseInt(Util.scanner.nextLine().trim());
         } catch (NumberFormatException e) {
-            System.out.println("Unesena nevažeca vrijednost!");
+            System.out.println(Text.INVALID_ENTRY);
             return;
         }
         if (DBQuery.addProgram(new Program(name, csvet))) {
-            System.out.println("Uspjesno Dodano!");
+            System.out.println(Text.ADDED_SUCCESSFULLY);
         } else {
-            System.out.println("Greska: nije moguce dodati program obrazovanja!");
+            System.out.println(Text.ADD_FAIL);
         }
     }
 
     public static Student promptID() {
         int id;
-        System.out.print("ID: ");
+        System.out.print(Text.ENTER_ID);
         try {
             id = Integer.parseInt(Util.scanner.nextLine().trim());
         } catch (NumberFormatException e) {
-            System.out.println("Unesena vrijednost nije broj!");
+            System.out.println(Text.NOT_A_NUMBER);
             return null;
         }
         return DBQuery.getStudentById(id);
     }
 
     private static List<Student> promptFirstName() {
-        System.out.print("Ime: ");
+        System.out.print(Text.ENTER_FIRST_NAME);
         String name = Util.scanner.nextLine().trim();
         return DBQuery.filterStudentByFirstName(name);
     }
 
     private static List<Student> promptLastName() {
-        System.out.print("Prezime: ");
+        System.out.print(Text.ENTER_LAST_NAME);
         String name = Util.scanner.nextLine().trim();
         return DBQuery.filterStudentByLastName(name);
     }
 
     private static List<Program> prompProgramName() {
-        System.out.print("Naziv: ");
+        System.out.print(Text.ENTER_TITLE);
         String name = Util.scanner.nextLine().trim();
         return DBQuery.filterProgramByName(name);
     }
 
     private static List<Program> prompProgramCSVET() {
         int csvet;
-        System.out.print("CSVET: ");
+        System.out.print(Text.ENTER_POINTS);
         try {
             csvet = Integer.parseInt(Util.scanner.nextLine().trim());
         } catch (NumberFormatException e) {
-            System.out.println("Unesena vrijednost nije broj!");
+            System.out.println(Text.NOT_A_NUMBER);
             return null;
         }
         return DBQuery.filterProgramByCSVET(csvet);
@@ -189,11 +175,11 @@ public class UI {
 
     public static Program promptProgramID() {
         int id;
-        System.out.print("ID: ");
+        System.out.print(Text.ENTER_ID);
         try {
             id = Integer.parseInt(Util.scanner.nextLine().trim());
         } catch (NumberFormatException e) {
-            System.out.println("Unesena vrijednost nije broj!");
+            System.out.println(Text.NOT_A_NUMBER);
             return null;
         }
         return DBQuery.getProgramById(id);
@@ -269,7 +255,7 @@ public class UI {
             if (student == null) {
                 student = selectStudent();
                 if (student == null) {
-                    System.out.println("Polaznik nije pronadjen. Pokusati ponovno?(Y/n)");
+                    System.out.println(Text.NOT_FOUND_TRY_AGAIN);
                     String answer = Util.scanner.nextLine().trim().toLowerCase();
                     if (answer.isBlank()) continue;
                     if (answer.charAt(0) == 'n') return;
@@ -280,22 +266,22 @@ public class UI {
             if (program == null) {
                 program = selectProgram();
                 if (program == null) {
-                    System.out.println("Program nije pronadjen. Pokusati ponovno?(Y/n)");
+                    System.out.println(Text.NOT_FOUND_TRY_AGAIN);
                     String answer = Util.scanner.nextLine().trim().toLowerCase();
                     if (answer.isBlank()) continue;
                     if (answer.charAt(0) == 'n') return;
                 }
                 continue;
             }
-            System.out.println("Zelite li registrirati polaznika?(Y/n)");
+            System.out.println(Text.CONFIRM_STUDENT_REGISTRATION);
             String answer = Util.scanner.nextLine().trim().toLowerCase();
             if (answer.isBlank()) continue;
             if (answer.charAt(0) == 'n') return;
             if (answer.charAt(0) == 'y') {
                 if (DBQuery.registerStudent(student, program)) {
-                    System.out.println("Uspjesno registrirano!");
+                    System.out.println(Text.ADDED_SUCCESSFULLY);
                 } else {
-                    System.out.println("Upis neuspjesan!");
+                    System.out.println(Text.ADD_FAIL);
                 }
                 return;
             }
@@ -312,7 +298,7 @@ public class UI {
             if (student == null) {
                 student = selectStudent();
                 if (student == null) {
-                    System.out.println("Polaznik nije pronadjen. Pokusati ponovno?(Y/n)");
+                    System.out.println(Text.NOT_FOUND_TRY_AGAIN);
                     String answer = Util.scanner.nextLine().trim().toLowerCase();
                     if (answer.isBlank()) continue;
                     if (answer.charAt(0) == 'n') return;
@@ -321,10 +307,10 @@ public class UI {
                 continue;
             }
             if (programOut == null) {
-                System.out.println("ISPIS:˘˘˘˘");
+                System.out.println(Text.ADD_STUDENT_HIGHLIGHT);
                 programOut = selectProgram();
                 if (programOut == null) {
-                    System.out.println("Program nije pronadjen. Pokusati ponovno?(Y/n)");
+                    System.out.println(Text.NOT_FOUND_TRY_AGAIN);
                     String answer = Util.scanner.nextLine().trim().toLowerCase();
                     if (answer.isBlank()) continue;
                     if (answer.charAt(0) == 'n') return;
@@ -332,25 +318,25 @@ public class UI {
                 continue;
             }
             if (programIn == null) {
-                System.out.println("UPIS˘˘˘˘");
+                System.out.println(Text.REMOVE_STUDENT_HIGHLIGHT);
                 programIn = selectProgram();
                 if (programIn == null) {
-                    System.out.println("Program nije pronadjen. Pokusati ponovno?(Y/n)");
+                    System.out.println(Text.NOT_FOUND_TRY_AGAIN);
                     String answer = Util.scanner.nextLine().trim().toLowerCase();
                     if (answer.isBlank()) continue;
                     if (answer.charAt(0) == 'n') return;
                 }
                 continue;
             }
-            System.out.println("Zelite li zaista prebaciti polaznika?(Y/n)");
+            System.out.println(Text.CONFIRM_TRANSFER);
             String answer = Util.scanner.nextLine().trim().toLowerCase();
             if (answer.isBlank()) continue;
             if (answer.charAt(0) == 'n') return;
             if (answer.charAt(0) == 'y') {
                 if (DBQuery.transferStudent(student, programOut, programIn)) {
-                    System.out.println("Polaznik uspjesno prebacen!");
+                    System.out.println(Text.ADDED_SUCCESSFULLY);
                 } else {
-                    System.out.println("Prebacivanje neuspjesno!");
+                    System.out.println(Text.ADD_FAIL);
                 }
                 return;
             }
@@ -362,7 +348,7 @@ public class UI {
         while (true) {
             program = selectProgram();
             if (program == null) {
-                System.out.println("Program nije pronadjen. Pokusati ponovno?(Y/n)");
+                System.out.println(Text.NOT_FOUND_TRY_AGAIN);
                 String answer = Util.scanner.nextLine().trim().toLowerCase();
                 if (answer.isBlank()) continue;
                 if (answer.charAt(0) == 'n') return;
